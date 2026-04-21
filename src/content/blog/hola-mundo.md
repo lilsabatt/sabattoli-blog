@@ -1,7 +1,7 @@
 ---
 title: hola mundo
 description: primer post
-pubDate: 2026-04-21
+pubDate: 2026-04-20
 ---
 
 ok, *este es el* **primer post**.
