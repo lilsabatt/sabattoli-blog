@@ -19,6 +19,7 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<h1>blog</h1>
+			<p><a href="/">← inicio</a></p>
 			<ul>
 				{posts.map((post) => (
 					<li>
