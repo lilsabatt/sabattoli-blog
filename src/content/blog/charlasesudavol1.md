@@ -1,5 +1,5 @@
 ---
-title: Charla sesuda Vol.1
+title: Charlas sesudas Vol.1
 description: Charlas sesudas Vol.1
 pubDate: 2026-04-21
 ---
