@@ -1,38 +1,66 @@
 :root {
-	--accent: #8b0000;
-	--black: 26, 26, 26;
-	--gray: 100, 90, 80;
-	--gray-light: 220, 210, 195;
-	--gray-dark: 40, 35, 30;
-	--bg: #f5f0e8;
-	--box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    --accent: #8b0000;
+    --black: 26, 26, 26;
+    --gray: 100, 90, 80;
+    --gray-light: 220, 210, 195;
+    --gray-dark: 40, 35, 30;
+    --bg: #f5f0e8;
+    --box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 }
 
+/* 1. Fondo texturizado aplicado a la raíz del documento para que nunca se corte */
+html {
+    background-image: url('/fondo.avif') !important;
+    background-repeat: repeat !important;
+    background-attachment: fixed !important;
+    background-color: var(--bg);
+    min-height: 100vh !important;
+    height: auto !important;
+}
+
+/* 2. Body transparente que actúa como columna flex para empujar el footer */
 body {
-	font-family: Georgia, 'Times New Roman', serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background-color: var(--bg);
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: #1a1a1a;
-	font-size: 18px;
-	line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+    font-family: Georgia, 'Times New Roman', serif;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: #1a1a1a;
+    font-size: 18px;
+    line-height: 1.7;
+    
+    /* Arquitectura Flexbox */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh !important;
+    height: auto !important;
 }
 
+/* 3. Contenedor central blanco que se estira dinámicamente */
 main {
-	width: 860px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    width: 860px;
+    max-width: calc(100% - 2em);
+    margin: 0 auto;
+    padding: 3em 2em;
+    
+    /* Obliga al contenedor a crecer con el contenido y empujar el resto hacia abajo */
+    flex: 1 0 auto !important; 
+    height: auto !important;
+    
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
 }
+
+/* --- TIPOGRAFÍA Y OTROS ESTILOS ORIGINALES --- */
 
 h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 0.5rem 0;
-	color: #1a1a1a;
-	line-height: 1.2;
-	font-family: Georgia, 'Times New Roman', serif;
+    margin: 0 0 0.5rem 0;
+    color: #1a1a1a;
+    line-height: 1.2;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 h1 { font-size: 2.4em; }
@@ -44,110 +72,97 @@ h5 { font-size: 1em; }
 strong, b { font-weight: 700; }
 
 a {
-	color: var(--accent);
-	text-decoration: underline;
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 a:hover {
-	color: #500000;
+    color: #500000;
 }
 
 p {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .prose p {
-	margin-bottom: 1.8em;
+    margin-bottom: 1.8em;
 }
 
 textarea {
-	width: 100%;
-	font-size: 16px;
-	font-family: Georgia, serif;
+    width: 100%;
+    font-size: 16px;
+    font-family: Georgia, serif;
 }
 
 input {
-	font-size: 16px;
-	font-family: Verdana, sans-serif;
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
 }
 
 table {
-	width: 100%;
-	border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 td, th {
-	border: 1px solid #bbb;
-	padding: 0.4em 0.8em;
+    border: 1px solid #bbb;
+    padding: 0.4em 0.8em;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	border: 2px solid #ccc;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ccc;
 }
 
 code {
-	padding: 2px 5px;
-	background-color: #e8e0d0;
-	font-family: 'Courier New', monospace;
-	font-size: 0.9em;
-	border: 1px solid #ccc;
+    padding: 2px 5px;
+    background-color: #e8e0d0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
 }
 
 pre {
-	padding: 1.5em;
-	background: #e8e0d0;
-	border: 1px solid #bbb;
-	overflow-x: auto;
+    padding: 1.5em;
+    background: #e8e0d0;
+    border: 1px solid #bbb;
+    overflow-x: auto;
 }
 
 pre > code {
-	all: unset;
-	font-family: 'Courier New', monospace;
+    all: unset;
+    font-family: 'Courier New', monospace;
 }
 
 blockquote {
-	border-left: 4px solid #8b0000;
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-style: italic;
-	color: #555;
+    border-left: 4px solid #8b0000;
+    padding: 0 0 0 20px;
+    margin: 0;
+    font-style: italic;
+    color: #555;
 }
 
 hr {
-	border: none;
-	border-top: 1px solid #bbb;
-	margin: 2em 0;
+    border: none;
+    border-top: 1px solid #bbb;
+    margin: 2em 0;
 }
 
 @media (max-width: 720px) {
-	body { font-size: 16px; }
-	main { padding: 1em; }
+    body { font-size: 16px; }
+    main { padding: 1em; }
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	white-space: nowrap;
-}
-html, body {
-	height: 100%;
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-main {
-	flex: 1;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
