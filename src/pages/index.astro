@@ -13,15 +13,87 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>bienvenido.</h1>
-			<p>
-				Espero te sientas a gusto en mi blog. Aca voy a publicar articulos de opinion, reseñas, recetas, etc etc etc. 
-			</p>
-			<p>
-				<a href="/blog">ver publicaciones sesudas→</a>
-			</p>
-
+			<div class="inicio">
+				<div class="texto">
+					<h1>bienvenido.</h1>
+					<p>
+						Espero te sientas a gusto en mi blog. Aca voy a publicar articulos de opinion, reseñas, recetas, etc etc etc.
+					</p>
+					<p>
+						<a href="/blog">ver publicaciones sesudas→</a>
+					</p>
+				</div>
+				<div class="luna-widget">
+					<div id="luna-emoji"></div>
+					<div id="luna-nombre"></div>
+				</div>
+			</div>
 		</main>
+		<script>
+			function getMoonPhase() {
+				const now = new Date();
+				const year = now.getFullYear();
+				const month = now.getMonth() + 1;
+				const day = now.getDate();
+
+				let y = year, m = month;
+				if (m < 3) { y--; m += 12; }
+				const a = Math.floor(y / 100);
+				const b = 2 - a + Math.floor(a / 4);
+				const jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + b - 1524.5;
+				const daysSinceNew = (jd - 2451549.5) % 29.53058867;
+				const phase = ((daysSinceNew % 29.53058867) + 29.53058867) % 29.53058867;
+
+				if (phase < 1.85) return { emoji: '🌑', nombre: 'luna nueva' };
+				if (phase < 7.38) return { emoji: '🌒', nombre: 'cuarto creciente' };
+				if (phase < 9.22) return { emoji: '🌓', nombre: 'media luna creciente' };
+				if (phase < 14.77) return { emoji: '🌔', nombre: 'luna gibosa creciente' };
+				if (phase < 16.61) return { emoji: '🌕', nombre: 'luna llena' };
+				if (phase < 22.15) return { emoji: '🌖', nombre: 'luna gibosa menguante' };
+				if (phase < 23.99) return { emoji: '🌗', nombre: 'media luna menguante' };
+				if (phase < 29.53) return { emoji: '🌘', nombre: 'cuarto menguante' };
+				return { emoji: '🌑', nombre: 'luna nueva' };
+			}
+
+			const { emoji, nombre } = getMoonPhase();
+			document.getElementById('luna-emoji')!.textContent = emoji;
+			document.getElementById('luna-nombre')!.textContent = nombre;
+		</script>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.inicio {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2em;
+	}
+	.texto {
+		flex: 1;
+	}
+	.luna-widget {
+	position: fixed;
+	right: 2em;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	border: 1px solid #ccc;
+	padding: 1.5em;
+	background: #eee8d8;
+	min-width: 140px;
+}
+	
+	#luna-emoji {
+		font-size: 4em;
+		line-height: 1;
+		display: block;
+	}
+	#luna-nombre {
+		font-family: Verdana, sans-serif;
+		font-size: 0.8em;
+		color: #555;
+		margin-top: 0.5em;
+	}
+</style>
