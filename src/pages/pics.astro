@@ -1,0 +1,98 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title="Archivo Visual" description="Galería de dibujos personales." />
+		<style>
+			/* Sistema de cuadrícula para la galería (se mantiene igual) */
+			.galeria {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+				gap: 1.5rem;
+				margin-top: 2rem;
+			}
+			.galeria img {
+				width: 100%;
+				height: auto;
+				border-radius: 8px;
+				border: 1px solid #ddd;
+				box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+				transition: transform 0.2s ease-in-out;
+				cursor: pointer; /* Cambia el cursor a una manito para indicar que es clickeable */
+			}
+			.galeria img:hover {
+				transform: scale(1.03);
+			}
+
+			/* --- ESTILOS DEL LIGHTBOX (Nuevo) --- */
+			#lightbox {
+				display: none; /* Oculto por defecto */
+				position: fixed; /* Fijo en la pantalla, no se mueve al scrollear */
+				z-index: 9999; /* Se asegura de estar por encima de TODO (header, fondo, etc) */
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
+				align-items: center; /* Centra verticalmente */
+				justify-content: center; /* Centra horizontalmente */
+				padding: 2rem;
+				box-sizing: border-box;
+				cursor: zoom-out; /* Cursor para indicar que si haces clic, se cierra */
+			}
+
+			#lightbox img {
+				max-width: 90%;
+				max-height: 90vh; /* Evita que la imagen sea más alta que la pantalla */
+				box-shadow: 0 0 20px rgba(0,0,0,0.5);
+				border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Archivo Visual</h1>
+			<p>Repositorio de dibujos. Hacé clic en una imagen para agrandarla.</p>
+			
+			<div class="galeria">
+				<img src="/pics/pic1.PNG" alt="Dibujo 1"> 
+				
+			</div>
+		</main>
+		<Footer />
+
+		<div id="lightbox">
+			<img id="lightbox-img" src="" alt="Imagen ampliada">
+		</div>
+
+		<script is:inline>
+			// Esperamos a que la página cargue por completo
+			document.addEventListener('DOMContentLoaded', () => {
+				const imagenes = document.querySelectorAll('.galeria img');
+				const lightbox = document.getElementById('lightbox');
+				const lightboxImg = document.getElementById('lightbox-img');
+
+				// A cada imagen de la galería le agregamos la función de clic
+				imagenes.forEach(img => {
+					img.addEventListener('click', () => {
+						// Le pasamos la ruta de la imagen clickeada a la imagen gigante del lightbox
+						lightboxImg.src = img.src;
+						// Cambiamos el display de 'none' a 'flex' para mostrarlo y centrarlo
+						lightbox.style.display = 'flex';
+					});
+				});
+
+				// Si el usuario hace clic en cualquier lado del fondo oscuro, se cierra
+				lightbox.addEventListener('click', () => {
+					lightbox.style.display = 'none';
+				});
+			});
+		</script>
+	</body>
+</html>
