@@ -1,0 +1,27 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>bienvenido.</h1>
+			<p>
+				esto es sabattoli.bar — un lugar donde escribo sobre las cosas que me interesan.
+				sin categorías fijas, sin periodicidad. cuando tengo algo para decir, lo escribo.
+			</p>
+			<p>
+				<a href="/blog">ver todo lo publicado →</a>
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
