@@ -76,6 +76,53 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		document.getElementById('dolar-venta')!.textContent = `venta: $${d.venta}`;
 		document.getElementById('dolar-fecha')!.textContent = d.fechaActualizacion?.slice(0,10) ?? '';
 	});
+	setTimeout(() => {
+	const popup = document.createElement('div');
+	popup.innerHTML = `
+		<div id="virus-popup" style="
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #c0c0c0;
+			border: 3px solid #000;
+			box-shadow: 4px 4px 0 #000;
+			width: 320px;
+			font-family: 'Arial', sans-serif;
+			font-size: 13px;
+			z-index: 9999;
+		">
+			<div style="background: #000080; color: white; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center;">
+				<span>⚠️ Advertencia del Sistema</span>
+				<span id="cerrar-popup" style="cursor: pointer; font-weight: bold; padding: 0 6px;">✕</span>
+			</div>
+			<div style="padding: 16px; text-align: center;">
+				<div style="font-size: 2em; margin-bottom: 8px;">🦠</div>
+				<p style="margin: 0 0 12px 0;"><strong>¡ADVERTENCIA!</strong><br>Se detectaron 3 virus en tu computadora.</p>
+				<p style="margin: 0 0 16px 0; color: red; font-weight: bold;">Tu PC está en peligro.</p>
+				<button onclick="document.getElementById('virus-popup').remove()" style="
+					background: #c0c0c0;
+					border: 2px solid;
+					border-color: #fff #000 #000 #fff;
+					padding: 4px 16px;
+					cursor: pointer;
+					font-size: 13px;
+					margin-right: 8px;
+				">Aceptar</button>
+				<button onclick="document.getElementById('virus-popup').remove()" style="
+					background: #c0c0c0;
+					border: 2px solid;
+					border-color: #fff #000 #000 #fff;
+					padding: 4px 16px;
+					cursor: pointer;
+					font-size: 13px;
+				">Cancelar</button>
+			</div>
+		</div>
+	`;
+	document.body.appendChild(popup);
+	document.getElementById('cerrar-popup')!.onclick = () => popup.remove();
+}, 2000);
 		</script>
 		<Footer />
 	</body>
