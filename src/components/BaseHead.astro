@@ -31,6 +31,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<meta name="robots" content="noindex, nofollow">
 
 <Font cssVariable="--font-atkinson" preload />
 
@@ -55,22 +56,3 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
-<style is:global>
-  body {
-    /* Esto pone la imagen en todo el fondo */
-    background-image: url('/fondo.avif'); 
-    background-repeat: repeat;
-    background-attachment: fixed;
-    margin: 0;
-  }
-
-  /* Si quieres que el contenido principal tenga un fondo blanco 
-     para que el texto se lea bien, usa esto: */
-  main {
-    background-color: rgba(255, 255, 255, 0.7); /* Blanco con un poco de transparencia */
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
-    min-height: 100vh;
-  }
-</style>
