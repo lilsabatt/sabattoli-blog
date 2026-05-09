@@ -1,5 +1,5 @@
 ---
-title: "Cancion"
+title: "Canción"
 description: "a"
 pubDate: "2026-05-09"
 ---
