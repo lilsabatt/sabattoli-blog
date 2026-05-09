@@ -14,45 +14,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="es">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-    main {
-        /* Configuración del contenedor central con fondo blanco */
-        background-color: rgba(255, 255, 255, 0.7);
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto; /* Centra el bloque respecto al fondo texturizado */
-        padding: 2em;
-        min-height: 100vh;
-        box-sizing: border-box;
-    }
-    .prose {
-        width: 100%;
-        max-width: 100%;
-        margin: auto;
-        color: #1a1a1a;
-    }
-    .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        line-height: 1;
-    }
-    .title h1 {
-        margin: 0 0 0.5em 0;
-    }
-    .date {
-        margin-bottom: 0.5em;
-        color: #888;
-        font-family: Verdana, sans-serif;
-        font-size: 0.85em;
-    }
-    .comments {
-        width: 100%;
-        max-width: 100%;
-        margin: 2em auto 0 auto;
-        padding-top: 1em;
-        border-top: 1px solid #ccc;
-    }
-</style>
+		
 	</head>
 
 	<body>
